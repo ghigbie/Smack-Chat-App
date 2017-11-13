@@ -33,14 +33,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun loginButtonNavClicked(view: View){
-        toasMakerTesst()
+        toasMakerTest()
     }
 
     fun addChannelClicked(view: View){
-        toasMakerTesst()
+        toasMakerTest()
     }
 
-    fun toasMakerTesst(){
+    fun toasMakerTest(){
         Toast.makeText(this, "Testing toast worked!!!", Toast.LENGTH_SHORT).show()
     }
 
