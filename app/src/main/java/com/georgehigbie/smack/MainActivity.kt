@@ -5,6 +5,7 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -32,7 +33,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun loginButtonNavClicked(view: View){
+        toasMakerTesst()
+    }
 
+    fun addChannelClicked(view: View){
+        toasMakerTesst()
+    }
+
+    fun toasMakerTesst(){
+        Toast.makeText(this, "Testing toast worked!!!", Toast.LENGTH_SHORT).show()
     }
 
 }
