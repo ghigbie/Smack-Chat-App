@@ -40,6 +40,10 @@ class MainActivity : AppCompatActivity() {
         toasMakerTest()
     }
 
+    fun sendMessageButtonClicked(view: View){
+        toasMakerTest()
+    }
+
     fun toasMakerTest(){
         Toast.makeText(this, "Testing toast worked!!!", Toast.LENGTH_SHORT).show()
     }
