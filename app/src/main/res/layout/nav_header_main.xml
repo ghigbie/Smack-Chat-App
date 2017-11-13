@@ -49,8 +49,8 @@
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
         android:backgroundTint="@android:color/transparent"
-        android:text="Login"
         android:onClick="loginButtonNavClicked"
+        android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -58,13 +58,13 @@
         android:id="@+id/imageButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:backgroundTint="@android:color/transparent"
-        android:scaleType="fitXY"
-        android:padding="5dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        app:srcCompat="@drawable/addchannelbutton"
+        android:backgroundTint="@android:color/transparent"
+        android:padding="5dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/addchannelbutton" />
 
 </android.support.constraint.ConstraintLayout>
