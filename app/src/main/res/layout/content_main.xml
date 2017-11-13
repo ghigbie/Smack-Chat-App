@@ -52,10 +52,10 @@
         android:layout_height="415dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toTopOf="@id/editText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/pleaseLogIn"
-        app:layout_constraintBottom_toTopOf="@id/editText"
         tools:layout_editor_absoluteY="35dp" />
 
 
