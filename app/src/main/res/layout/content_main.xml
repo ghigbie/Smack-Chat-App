@@ -9,6 +9,7 @@
     tools:showIn="@layout/app_bar_main">
 
     <TextView
+        android:id="@+id/pleaseLogIn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -33,6 +34,29 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@android:color/transparent"
+        android:tint="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_menu_send" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="368dp"
+        android:layout_height="415dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pleaseLogIn"
+        app:layout_constraintBottom_toTopOf="@id/editText"
+        tools:layout_editor_absoluteY="35dp" />
 
 
 </android.support.constraint.ConstraintLayout>
