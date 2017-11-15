@@ -47,12 +47,12 @@
         android:layout_width="wrap_content"
         android:layout_height="38dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="0dp"
         android:backgroundTint="@android:color/transparent"
         android:onClick="loginButtonNavClicked"
         android:text="@string/login"
         style="?android:attr/borderlessButtonStyle"
-        android:gravity="left"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
