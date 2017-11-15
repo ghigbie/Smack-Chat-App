@@ -70,7 +70,7 @@
         android:layout_marginStart="8dp"
         android:background="@color/colorPrimary"
         android:onClick="loginCreateUserButtonClicked"
-        android:text="@string/create_user"
+        android:text="@string/sign_up"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
