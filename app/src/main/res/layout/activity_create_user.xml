@@ -15,7 +15,7 @@
         android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="username"
+        android:hint="@string/user_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -52,9 +52,9 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="Tap to generate user avatar"
-        tools:layout_editor_absoluteX="143dp"
-        tools:layout_editor_absoluteY="230dp" />
+        android:text="@string/tap_to_generate_user_avatar"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="228dp" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -71,7 +71,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:background="@color/colorPrimary"
-        android:text="Generate Background Color"
+        android:text="@string/generate_background_color"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +84,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:background="@color/colorPrimary"
-        android:text="Create User"
+        android:text="@string/create_user"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
