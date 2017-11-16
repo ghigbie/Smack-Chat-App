@@ -14,4 +14,5 @@
     <string name="user_name">user name</string>
     <string name="generate_background_color">Generate Background Color</string>
     <string name="create_user">Create User</string>
+    <string name="image_of_user_avatar">Image of user avatar</string>
 </resources>
