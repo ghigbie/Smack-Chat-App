@@ -44,7 +44,8 @@ class CreateUserActivity : AppCompatActivity() {
         val savedGreenValue = greenValue.toDouble() / 255
         val savedBlueValue = blueValue.toDouble() /255
 
-        avatarColor = "[$savedRedValue, $savedGreenValue, $savedBlueValue]"
+        avatarColor = "[$savedRedValue, $savedGreenValue, $savedBlueValue, 1]"
+        println(avatarColor)
     }
 
     fun createUserClicked(view: View){
