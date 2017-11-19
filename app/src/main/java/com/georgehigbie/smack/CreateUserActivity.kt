@@ -40,12 +40,11 @@ class CreateUserActivity : AppCompatActivity() {
 
         createAvatarImageView.setBackgroundColor(Color.rgb(redValue, greenValue, blueValue)) //this sets the background color of the image
 
-        val savedRedValue = redValue.toDouble() / 255
-        val savedGreenValue = greenValue.toDouble() / 255
-        val savedBlueValue = blueValue.toDouble() /255
+        val savedRedValue = redValue.toDouble() / 256
+        val savedGreenValue = greenValue.toDouble() / 256
+        val savedBlueValue = blueValue.toDouble() /256
 
         avatarColor = "[$savedRedValue, $savedGreenValue, $savedBlueValue, 1]"
-        println(avatarColor)
     }
 
     fun createUserClicked(view: View){
