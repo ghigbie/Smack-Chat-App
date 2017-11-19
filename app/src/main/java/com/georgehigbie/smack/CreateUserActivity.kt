@@ -28,7 +28,8 @@ class CreateUserActivity : AppCompatActivity() {
             userAvatar = "dark$avatar"
         }
 
-
+        val resourceId = resources.getIdentifier(userAvatar, "drawable", packageName)
+        createAvatarImageView.setImageResource(resourceId)
     }
 
     fun generateColorClicked(view: View){
