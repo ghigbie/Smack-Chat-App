@@ -10,7 +10,7 @@ import java.util.*
 class CreateUserActivity : AppCompatActivity() {
 
     var userAvatar = "profileDefault"
-    var avatarColor = "[0.5, 0.5, 0.5]"
+    var avatarColor = "[0.5, 0.5, 0.5, 1]"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,14 +18,24 @@ class CreateUserActivity : AppCompatActivity() {
     }
 
     fun generateUserAvatar(view: View){
+        val random = Random()
+        val color = random.nextInt(2)
+        val avatar = random.nextInt(28)
+
+        if(color == 0){
+            userAvatar = "light$avatar"
+        }else{
+            userAvatar = "dark$avatar"
+        }
+
 
     }
 
     fun generateColorClicked(view: View){
         val random = Random()
-        val redValue = random.nextInt(255)
-        val greenValue = random.nextInt(255)
-        val blueValue = random.nextInt(255)
+        val redValue = random.nextInt(256)
+        val greenValue = random.nextInt(256)
+        val blueValue = random.nextInt(256)
 
         createAvatarImageView.setBackgroundColor(Color.rgb(redValue, greenValue, blueValue)) //this sets the background color of the image
 
