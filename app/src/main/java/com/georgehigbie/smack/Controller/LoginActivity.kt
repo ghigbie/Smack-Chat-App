@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.georgehigbie.smack.R
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -14,7 +15,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun loginLoginButtonClicked(view: View){
-
+        val email = loginEmailText.text.toString()
+        val password = loginPasswordText.text.toString()
     }
 
     fun loginCreateUserButtonClicked(view: View){
