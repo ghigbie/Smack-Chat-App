@@ -39,18 +39,17 @@ object AuthService {
         Volley.newRequestQueue(context).add(registerRequest)
     }
 
-    fun loginUser(context: Context, email: String, password: String, complete:(Boolean) -> Unit){
+    fun loginUser(context: Context, email: String, password: String, complete: (Boolean) -> Unit){
 
         val jsonBody = JSONObject()
         jsonBody.put("email", email)
-        jsonBody.put("passwrod", password)
+        jsonBody.put("password", password)
         val requestBody = jsonBody.toString()
 
-        val loginRequest = object : JsonObjectRequest(Method.POST, URL_LOGIN, null, Response.Listener { response ->
-            //parse JSON here
+        val loginRequest = object: JsonObjectRequest(Method.POST, URL_LOGIN, null, Response.Listener { response ->
             println(response)
             complete(true)
-        },Response.ErrorListener { error ->
+        }, Response.ErrorListener { error ->
             Log.d("ERROR", "Could not login user: $error")
             complete(false)
         }){
@@ -61,7 +60,6 @@ object AuthService {
             override fun getBody(): ByteArray {
                 return requestBody.toByteArray()
             }
-
         }
         Volley.newRequestQueue(context).add(loginRequest)
     }

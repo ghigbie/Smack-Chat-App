@@ -54,9 +54,10 @@ class CreateUserActivity : AppCompatActivity() {
         val password = createPasswordText.text.toString()
         AuthService.registerUser(this, email, password){ registerSuccess ->
             if(registerSuccess){
+                println("REGISTER COMPLETE")
                 AuthService.loginUser(this, email, password){ loginSuccess ->
                     if(loginSuccess){
-
+                        println("LOGIN COMPLETE")
                     }
 
                 }
