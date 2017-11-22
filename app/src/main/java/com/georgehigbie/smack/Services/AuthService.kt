@@ -55,13 +55,15 @@ object AuthService {
             Log.d("ERROR", "Could not login user: $error")
             complete(false)
         }){
+            override fun getBodyContentType(): String {
+                return "application/json; charset=utf-8"
+            }
+
+            override fun getBody(): ByteArray {
+                return requestBody.toByteArray()
+            }
 
         }
 
         }
-
-        }){
-            
-        }
-    }
 }
