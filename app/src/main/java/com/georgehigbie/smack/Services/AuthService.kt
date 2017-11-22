@@ -3,8 +3,10 @@ package com.georgehigbie.smack.Services
 import android.content.Context
 import android.util.Log
 import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.georgehigbie.smack.Utilities.URL_LOGIN
 import com.georgehigbie.smack.Utilities.URL_REGISTER
 import org.json.JSONObject
 
@@ -36,5 +38,30 @@ object AuthService {
         }
 
         Volley.newRequestQueue(context).add(registerRequest)
+    }
+
+    fun loginUser(context: Context, email: String, password: String, complete:(Boolean) -> Unit){
+
+        val jsonBody = JSONObject()
+        jsonBody.put("email", email)
+        jsonBody.put("passwrod", password)
+        val requestBody = jsonBody.toString()
+
+        val loginRequest = object : JsonObjectRequest(Method.POST, URL_LOGIN, null, Response.Listener { response ->
+            //parse JSON here
+            println(response)
+            complete(true)
+        },Response.ErrorListener { error ->
+            Log.d("ERROR", "Could not login user: $error")
+            complete(false)
+        }){
+
+        }
+
+        }
+
+        }){
+            
+        }
     }
 }
