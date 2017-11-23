@@ -94,6 +94,7 @@ object AuthService {
                 UserDataService.email = response.getString("email")
                 UserDataService.avatarName = response.getString("avatarName")
                 UserDataService.avatarColor = response.getString("avatarColor")
+                UserDataService.id = response.getString("_id")
                 complete(true)
             }catch(e: JSONException){
                 Log.d("JSON", "EXC " + e.localizedMessage)
@@ -120,6 +121,6 @@ object AuthService {
             }
         }
 
-
+        Volley.newRequestQueue(context).add(createRequest)
     }
 }
