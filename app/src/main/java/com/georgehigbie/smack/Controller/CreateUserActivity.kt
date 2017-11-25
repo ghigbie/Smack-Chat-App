@@ -52,38 +52,43 @@ class CreateUserActivity : AppCompatActivity() {
         avatarColor = "[$savedRedValue, $savedGreenValue, $savedBlueValue, 1]"
     }
 
-    fun createUserClicked(view: View){
+    fun createUserClicked(view: View) {
         enableSpinner(true)
         val userName = createUserNameText.text.toString()
         val email = createEmailText.text.toString()
         val password = createPasswordText.text.toString()
 
-        AuthService.registerUser(this, email, password){ registerSuccess ->
-            if(registerSuccess){
-                println("REGISTER COMPLETE")
-                AuthService.loginUser(this, email, password){ loginSuccess ->
-                    if(loginSuccess){
-                        println("LOGIN COMPLETE")
-                        AuthService.createUser(this, userName, email, userAvatar, avatarColor){ createSuccess ->
-                            if(createSuccess){
-                                println(UserDataService.avatarName)
-                                println(UserDataService.avatarColor)
-                                println(UserDataService.name)
-                                println("CREATE COMPLETE")
-                                println("DONE!!!!!")
-                                enableSpinner(false)
-                                finish()
-                            }else{
-                                errorToast("Something went wrong with user creation. Please try again.")
+        if (userName.isEmpty() && email.isEmpty() && password.isEmpty() && password.length < 6) {
+
+            AuthService.registerUser(this, email, password) { registerSuccess ->
+                if (registerSuccess) {
+                    println("REGISTER COMPLETE")
+                    AuthService.loginUser(this, email, password) { loginSuccess ->
+                        if (loginSuccess) {
+                            println("LOGIN COMPLETE")
+                            AuthService.createUser(this, userName, email, userAvatar, avatarColor) { createSuccess ->
+                                if (createSuccess) {
+                                    println(UserDataService.avatarName)
+                                    println(UserDataService.avatarColor)
+                                    println(UserDataService.name)
+                                    println("CREATE COMPLETE")
+                                    println("DONE!!!!!")
+                                    enableSpinner(false)
+                                    finish()
+                                } else {
+                                    errorToast("Something went wrong with user creation. Please try again.")
+                                }
                             }
+                        } else {
+                            errorToast("Something went wrong with the login process. Please try again")
                         }
-                    }else{
-                        errorToast("Something went wrong with the login process. Please try again")
                     }
+                } else {
+                    errorToast("Something went wrong with the registration process. Please try again.")
                 }
-            }else{
-                errorToast("Something went wrong with the registration process. Please try again.")
             }
+        }else{
+            errorToast("Make sure user name, email, and password are completed. Password must be more that 6 characters.")
         }
     }
 
