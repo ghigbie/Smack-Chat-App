@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.Toast
 import com.georgehigbie.smack.R
 import com.georgehigbie.smack.Services.AuthService
 import com.georgehigbie.smack.Services.UserDataService
@@ -78,6 +79,10 @@ class CreateUserActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun errorToast(message: String){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show
     }
 
     fun enableSpinner(enable: Boolean){
