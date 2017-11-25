@@ -73,16 +73,23 @@ class CreateUserActivity : AppCompatActivity() {
                                 println("DONE!!!!!")
                                 enableSpinner(false)
                                 finish()
+                            }else{
+                                errorToast("Something went wrong with user creation. Please try again.")
                             }
                         }
+                    }else{
+                        errorToast("Something went wrong with the login process. Please try again")
                     }
                 }
+            }else{
+                errorToast("Something went wrong with the registration process. Please try again.")
             }
         }
     }
 
     fun errorToast(message: String){
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        enableSpinner(false)
     }
 
     fun enableSpinner(enable: Boolean){
