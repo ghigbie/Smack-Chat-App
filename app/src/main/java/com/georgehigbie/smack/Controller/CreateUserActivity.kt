@@ -1,13 +1,16 @@
 package com.georgehigbie.smack.Controller
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.support.v4.content.LocalBroadcastManager
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
 import com.georgehigbie.smack.R
 import com.georgehigbie.smack.Services.AuthService
 import com.georgehigbie.smack.Services.UserDataService
+import com.georgehigbie.smack.Utilities.BROADCAST_USER_DATA_CHANGE
 import kotlinx.android.synthetic.main.activity_create_user.*
 import java.util.*
 
@@ -39,15 +42,15 @@ class CreateUserActivity : AppCompatActivity() {
 
     fun generateColorClicked(view: View){
         val random = Random()
-        val redValue = random.nextInt(256)
-        val greenValue = random.nextInt(256)
-        val blueValue = random.nextInt(256)
+        val redValue = random.nextInt(255)
+        val greenValue = random.nextInt(255)
+        val blueValue = random.nextInt(255)
 
         createAvatarImageView.setBackgroundColor(Color.rgb(redValue, greenValue, blueValue)) //this sets the background color of the image
 
-        val savedRedValue = redValue.toDouble() / 256
-        val savedGreenValue = greenValue.toDouble() / 256
-        val savedBlueValue = blueValue.toDouble() /256
+        val savedRedValue = redValue.toDouble() / 255
+        val savedGreenValue = greenValue.toDouble() / 255
+        val savedBlueValue = blueValue.toDouble() /255
 
         avatarColor = "[$savedRedValue, $savedGreenValue, $savedBlueValue, 1]"
     }
@@ -58,7 +61,7 @@ class CreateUserActivity : AppCompatActivity() {
         val email = createEmailText.text.toString()
         val password = createPasswordText.text.toString()
 
-        if (userName.isEmpty() && email.isEmpty() && password.isEmpty() && password.length < 6) {
+        if (userName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
 
             AuthService.registerUser(this, email, password) { registerSuccess ->
                 if (registerSuccess) {
@@ -68,11 +71,15 @@ class CreateUserActivity : AppCompatActivity() {
                             println("LOGIN COMPLETE")
                             AuthService.createUser(this, userName, email, userAvatar, avatarColor) { createSuccess ->
                                 if (createSuccess) {
+                                    //developer notifications
                                     println(UserDataService.avatarName)
                                     println(UserDataService.avatarColor)
                                     println(UserDataService.name)
                                     println("CREATE COMPLETE")
                                     println("DONE!!!!!")
+
+                                    val userDataChange = Intent(BROADCAST_USER_DATA_CHANGE)
+                                    LocalBroadcastManager.getInstance(this).sendBroadcast(userDataChange)
                                     enableSpinner(false)
                                     finish()
                                 } else {
@@ -88,7 +95,8 @@ class CreateUserActivity : AppCompatActivity() {
                 }
             }
         }else{
-            errorToast("Make sure user name, email, and password are completed. Password must be more that 6 characters.")
+            errorToast("Make sure user name, email, and password are completed.")
+            enableSpinner(false)
         }
     }
 
