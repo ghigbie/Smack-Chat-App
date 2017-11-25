@@ -58,8 +58,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun loginButtonNavClicked(view: View){
-        val loginIntent = Intent(this, LoginActivity::class.java)
-        startActivity(loginIntent)
+        if(AuthService.isLoggedIn){
+            //logout
+
+        }else {
+            val loginIntent = Intent(this, LoginActivity::class.java)
+            startActivity(loginIntent)
+        }
     }
 
     fun addChannelClicked(view: View){
