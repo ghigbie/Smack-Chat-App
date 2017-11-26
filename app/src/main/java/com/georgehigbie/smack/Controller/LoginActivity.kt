@@ -18,13 +18,12 @@ class LoginActivity : AppCompatActivity() {
     fun loginLoginButtonClicked(view: View){
         val email = loginEmailText.text.toString()
         val password = loginPasswordText.text.toString()
-        if(email.isNotEmpty() && password.isNotEmpty()){
-            AuthService.loginUser(this, email, password){ loginSucess ->
-                if(loginSucess){
-                    AuthService.findUserByEmail(this){ findSuccess ->
-                        if(findSuccess){
-                            finish()
-                        }
+
+        AuthService.loginUser(this, email, password) { loginSuccess ->
+            if (loginSuccess) {
+                AuthService.findUserByEmail(this) { findSuccess ->
+                    if (findSuccess) {
+                        finish()
                     }
                 }
             }
