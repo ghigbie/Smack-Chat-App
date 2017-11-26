@@ -22,21 +22,26 @@ class LoginActivity : AppCompatActivity() {
         val email = loginEmailText.text.toString()
         val password = loginPasswordText.text.toString()
 
-        AuthService.loginUser(this, email, password) { loginSuccess ->
-            if (loginSuccess) {
-                AuthService.findUserByEmail(this) { findSuccess ->
-                    if (findSuccess) {
-                        enableSpinner(false)
-                        finish()
-                    }else{
-                        ToastService.createToastLong(this, "The user entered could not be found. Please try again.")
-                        enableSpinner(false)
+        if(email.isNotEmpty() && password.isNotEmpty()) {
+            AuthService.loginUser(this, email, password) { loginSuccess ->
+                if (loginSuccess) {
+                    AuthService.findUserByEmail(this) { findSuccess ->
+                        if (findSuccess) {
+                            enableSpinner(false)
+                            finish()
+                        } else {
+                            ToastService.createToastLong(this, "The user entered could not be found. Please try again.")
+                            enableSpinner(false)
+                        }
                     }
+                } else {
+                    ToastService.createToastLong(this, "There was an login error. Please try again.")
+                    enableSpinner(false)
                 }
-            }else{
-                ToastService.createToastLong(this, "There was an login error. Please try again.")
-                enableSpinner(false)
             }
+        }else{
+            ToastService.createToastShort(this, "Please enter a username and password.")
+            enableSpinner(false)
         }
     }
 
