@@ -103,7 +103,7 @@ object AuthService {
             }
 
         }, Response.ErrorListener { error ->
-            Log.d("ERROR", "Could not log user: $error")
+            Log.d("ERROR", "Could not create user: $error")
             complete(false)
 
         }){
@@ -126,20 +126,19 @@ object AuthService {
     }
 
     fun findUserByEmail(context: Context, complete: (Boolean) -> Unit){
-        val jsonBody = JSONObject()
-        val requestBody = jsonBody.toString()
-
         val findUserRequet = object: JsonObjectRequest(Method.GET, "$URL_GET_USER$userEmail", null, Response.Listener {
+            try{
 
-        }, Response.ErrorListener {
+            } catch(e: JSONException){
+                Log.d("JSON", "EXE: ${e.localizedMessage}")
+            }
 
+        }, Response.ErrorListener {error ->
+            Log.d("ERROR", "Could not find user: $error")
+            complete(false)
         }){
             override fun getBodyContentType(): String {
                 return "application/json; charset=utf-8"
-            }
-
-            override fun getBody(): ByteArray {
-                return requestBody.toByteArray()
             }
 
             override fun getHeaders(): MutableMap<String, String> {
