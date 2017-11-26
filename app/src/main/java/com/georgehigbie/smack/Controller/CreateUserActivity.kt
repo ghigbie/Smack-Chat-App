@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import com.georgehigbie.smack.R
 import com.georgehigbie.smack.Services.AuthService
+import com.georgehigbie.smack.Services.ToastService
 import com.georgehigbie.smack.Services.UserDataService
 import com.georgehigbie.smack.Utilities.BROADCAST_USER_DATA_CHANGE
 import kotlinx.android.synthetic.main.activity_create_user.*
@@ -83,19 +84,19 @@ class CreateUserActivity : AppCompatActivity() {
                                     enableSpinner(false)
                                     finish()
                                 } else {
-                                    errorToast("Something went wrong with user creation. Please try again.")
+                                    ToastService.createToastLong(this,"Something went wrong with user creation. Please try again.")
                                 }
                             }
                         } else {
-                            errorToast("Something went wrong with the login process. Please try again")
+                            ToastService.createToastLong(this,"Something went wrong with the login process. Please try again")
                         }
                     }
                 } else {
-                    errorToast("Something went wrong with the registration process. Please try again.")
+                    ToastService.createToastLong(this,"Something went wrong with the registration process. Please try again.")
                 }
             }
         }else{
-            errorToast("Make sure user name, email, and password are completed.")
+            ToastService.createToastLong(this,"Make sure user name, email, and password are completed.")
             enableSpinner(false)
         }
     }

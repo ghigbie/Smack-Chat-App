@@ -14,6 +14,7 @@ import android.view.View
 import android.widget.Toast
 import com.georgehigbie.smack.R
 import com.georgehigbie.smack.Services.AuthService
+import com.georgehigbie.smack.Services.ToastService
 import com.georgehigbie.smack.Services.UserDataService
 import com.georgehigbie.smack.Utilities.BROADCAST_USER_DATA_CHANGE
 import kotlinx.android.synthetic.main.activity_main.*
@@ -73,11 +74,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addChannelClicked(view: View){
-        toasMakerTest()
+        ToastService.toasMakerTest(this)
     }
 
     fun sendMessageButtonClicked(view: View){
-        toasMakerTest()
+        ToastService.toasMakerTest(this)
     }
 
     fun toasMakerTest(){
