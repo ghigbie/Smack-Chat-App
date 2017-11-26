@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.georgehigbie.smack.R
 import com.georgehigbie.smack.Services.AuthService
+import com.georgehigbie.smack.Services.ToastService
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -17,6 +18,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun loginLoginButtonClicked(view: View){
+        enableSpinner(true)
         val email = loginEmailText.text.toString()
         val password = loginPasswordText.text.toString()
 
@@ -24,9 +26,16 @@ class LoginActivity : AppCompatActivity() {
             if (loginSuccess) {
                 AuthService.findUserByEmail(this) { findSuccess ->
                     if (findSuccess) {
+                        enableSpinner(false)
                         finish()
+                    }else{
+                        ToastService.createToastLong(this, "The user entered could not be found. Please try again.")
+                        enableSpinner(false)
                     }
                 }
+            }else{
+                ToastService.createToastLong(this, "There was an login error. Please try again.")
+                enableSpinner(false)
             }
         }
     }

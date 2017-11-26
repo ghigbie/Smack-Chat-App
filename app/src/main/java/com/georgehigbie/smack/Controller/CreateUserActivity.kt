@@ -84,14 +84,17 @@ class CreateUserActivity : AppCompatActivity() {
                                     finish()
                                 } else {
                                     ToastService.createToastLong(this,"Something went wrong with user creation. Please try again.")
+                                    enableSpinner(false)
                                 }
                             }
                         } else {
                             ToastService.createToastLong(this,"Something went wrong with the login process. Please try again")
+                            enableSpinner(false)
                         }
                     }
                 } else {
                     ToastService.createToastLong(this,"Something went wrong with the registration process. Please try again.")
+                    enableSpinner(false)
                 }
             }
         }else{
