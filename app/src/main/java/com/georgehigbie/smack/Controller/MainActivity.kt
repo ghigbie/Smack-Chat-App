@@ -11,7 +11,6 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.Toast
 import com.georgehigbie.smack.R
 import com.georgehigbie.smack.Services.AuthService
 import com.georgehigbie.smack.Services.ToastService
@@ -81,8 +80,5 @@ class MainActivity : AppCompatActivity() {
         ToastService.toasMakerTest(this)
     }
 
-    fun toasMakerTest(){
-        Toast.makeText(this, "Testing toast worked!!!", Toast.LENGTH_SHORT).show()
-    }
 
 }

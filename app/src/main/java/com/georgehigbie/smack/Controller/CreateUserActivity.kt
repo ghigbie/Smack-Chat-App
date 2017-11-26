@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.v4.content.LocalBroadcastManager
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.Toast
 import com.georgehigbie.smack.R
 import com.georgehigbie.smack.Services.AuthService
 import com.georgehigbie.smack.Services.ToastService
@@ -99,11 +98,6 @@ class CreateUserActivity : AppCompatActivity() {
             ToastService.createToastLong(this,"Make sure user name, email, and password are completed.")
             enableSpinner(false)
         }
-    }
-
-    fun errorToast(message: String){
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-        enableSpinner(false)
     }
 
     fun enableSpinner(enable: Boolean){
