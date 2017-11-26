@@ -62,6 +62,7 @@ class CreateUserActivity : AppCompatActivity() {
         val userName = createUserNameText.text.toString()
         val email = createEmailText.text.toString()
         val password = createPasswordText.text.toString()
+        hideKeyboard()
 
         if (userName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
 
