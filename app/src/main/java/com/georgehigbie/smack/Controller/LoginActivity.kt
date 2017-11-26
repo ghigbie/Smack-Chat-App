@@ -13,6 +13,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        enableSpinner(false)
     }
 
     fun loginLoginButtonClicked(view: View){
@@ -34,5 +35,15 @@ class LoginActivity : AppCompatActivity() {
         val createUserIntent = Intent(this, CreateUserActivity::class.java)
         startActivity(createUserIntent)
         finish()
+    }
+
+    fun enableSpinner(enable: Boolean){
+        if(enable){
+            loginSpinner.visibility = View.VISIBLE
+        }else{
+            loginSpinner.visibility = View.INVISIBLE
+        }
+        loginLoginButton.isEnabled = !enable
+        loginCreateUserButton.isEnabled = !enable
     }
 }
