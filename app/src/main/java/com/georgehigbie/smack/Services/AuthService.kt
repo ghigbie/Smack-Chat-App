@@ -134,7 +134,8 @@ object AuthService {
                 UserDataService.id = response.getString("_id")
 
                 val userDataChange = Intent(BROADCAST_USER_DATA_CHANGE)
-                LocalBroadcastManager.getInstance(this).sendBroadcast(userDataChange)
+                LocalBroadcastManager.getInstance(context).sendBroadcast(userDataChange)
+                complete(true)
 
             } catch(e: JSONException){
                 Log.d("JSON", "EXE: ${e.localizedMessage}")
@@ -154,5 +155,6 @@ object AuthService {
                 return headers
             }
         }
+        Volley.newRequestQueue(context).add(findUserRequet)
     }
 }
