@@ -62,7 +62,7 @@ object AuthService {
                 isLoggedIn = true
                 complete(true)
             }catch (e: JSONException) {
-                Log.d("JSON", "EXC: " + e.localizedMessage)
+                Log.d("JSON", "EXC: ${e.localizedMessage}")
                 complete(false)
             }
         }, Response.ErrorListener { error ->
@@ -98,7 +98,7 @@ object AuthService {
                 UserDataService.id = response.getString("_id")
                 complete(true)
             }catch(e: JSONException){
-                Log.d("JSON", "EXC " + e.localizedMessage)
+                Log.d("JSON", "EXC: ${e.localizedMessage}")
                 complete(false)
             }
 
@@ -126,9 +126,13 @@ object AuthService {
     }
 
     fun findUserByEmail(context: Context, complete: (Boolean) -> Unit){
-        val findUserRequet = object: JsonObjectRequest(Method.GET, "$URL_GET_USER$userEmail", null, Response.Listener {
+        val findUserRequet = object: JsonObjectRequest(Method.GET, "$URL_GET_USER$userEmail", null, Response.Listener { response ->
             try{
-
+                UserDataService.name = response.getString("name")
+                UserDataService.email = response.getString("email")
+                UserDataService.avatarName = response.getString("avatarName")
+                UserDataService.avatarColor = response.getString("avatarColor")
+                UserDataService.id = response.getString("_id")
             } catch(e: JSONException){
                 Log.d("JSON", "EXE: ${e.localizedMessage}")
             }
