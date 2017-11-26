@@ -1,15 +1,14 @@
 package com.georgehigbie.smack.Services
 
 import android.content.Context
+import android.content.Intent
+import android.support.v4.content.LocalBroadcastManager
 import android.util.Log
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.georgehigbie.smack.Utilities.URL_CREATE_USER
-import com.georgehigbie.smack.Utilities.URL_GET_USER
-import com.georgehigbie.smack.Utilities.URL_LOGIN
-import com.georgehigbie.smack.Utilities.URL_REGISTER
+import com.georgehigbie.smack.Utilities.*
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -133,6 +132,10 @@ object AuthService {
                 UserDataService.avatarName = response.getString("avatarName")
                 UserDataService.avatarColor = response.getString("avatarColor")
                 UserDataService.id = response.getString("_id")
+
+                val userDataChange = Intent(BROADCAST_USER_DATA_CHANGE)
+                LocalBroadcastManager.getInstance(this).sendBroadcast(userDataChange)
+
             } catch(e: JSONException){
                 Log.d("JSON", "EXE: ${e.localizedMessage}")
             }
