@@ -15,4 +15,8 @@ object ToastService {
     fun createToastLong(context: Context, message: String){
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
+
+    fun toasMakerTest(context: Context){
+        Toast.makeText(context, "Testing toast worked!!!", Toast.LENGTH_SHORT).show()
+    }
 }
