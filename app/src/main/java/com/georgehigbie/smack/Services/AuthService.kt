@@ -7,6 +7,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.georgehigbie.smack.Utilities.URL_CREATE_USER
+import com.georgehigbie.smack.Utilities.URL_GET_USER
 import com.georgehigbie.smack.Utilities.URL_LOGIN
 import com.georgehigbie.smack.Utilities.URL_REGISTER
 import org.json.JSONException
@@ -122,5 +123,30 @@ object AuthService {
         }
 
         Volley.newRequestQueue(context).add(createRequest)
+    }
+
+    fun findUserByEmail(context: Context, complete: (Boolean) -> Unit){
+        val jsonBody = JSONObject()
+        val requestBody = jsonBody.toString()
+
+        val findUserRequet = object: JsonObjectRequest(Method.GET, "$URL_GET_USER$userEmail", null, Response.Listener {
+
+        }, Response.ErrorListener {
+
+        }){
+            override fun getBodyContentType(): String {
+                return "application/json; charset=utf-8"
+            }
+
+            override fun getBody(): ByteArray {
+                return requestBody.toByteArray()
+            }
+
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers.put("Authorization", "Bearer $authToken")
+                return headers
+            }
+        }
     }
 }
