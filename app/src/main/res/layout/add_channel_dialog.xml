@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="channel name"
+        android:hint="@string/channel_name"
         android:textColor="@android:color/darker_gray"/>
 
     <EditText
@@ -28,6 +28,6 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="channel description"
+        android:hint="@string/channel_description"
         android:textColor="@android:color/darker_gray"/>
 </LinearLayout>
