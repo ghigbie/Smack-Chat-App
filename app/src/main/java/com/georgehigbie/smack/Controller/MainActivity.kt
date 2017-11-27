@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.support.v4.content.LocalBroadcastManager
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.georgehigbie.smack.R
@@ -73,7 +74,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addChannelClicked(view: View){
-        ToastService.toasMakerTest(this)
+        if(AuthService.isLoggedIn){
+            val builder = AlertDialog.Builder(this)
+            val dialogView = layoutInflater.inflate(R.layout.add_channel_dialog, null)
+            builder.setView(dialogView)
+                    .setPositiveButton(R.string.add){ dialogInterface, i ->
+                        //needs some logic when clicked
+                    }
+                    .setNegativeButton(R.string.cancel){ dialogInterface, i ->
+                        //cancel and close the dialog when clicked
+                    }
+                    .show()
+        }
     }
 
     fun sendMessageButtonClicked(view: View){

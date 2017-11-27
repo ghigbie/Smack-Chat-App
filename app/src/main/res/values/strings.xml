@@ -18,4 +18,6 @@
     <string name="add_channel">Add Channel</string>
     <string name="channel_name">channel name</string>
     <string name="channel_description">channel description</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
 </resources>
