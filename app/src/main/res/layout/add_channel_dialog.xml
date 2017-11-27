@@ -8,15 +8,20 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/add_channel"
         android:gravity="center_horizontal"
         android:textSize="18sp"
         android:textColor="@android:color/darker_gray"/>
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/addChannelNameText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/modal_text_elements"
+        android:layout_marginTop="@dimen/modal_text_elements"
+        android:layout_marginBottom="@dimen/modal_text_elements"
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="@string/channel_name"
@@ -27,6 +32,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:layout_marginEnd="@dimen/modal_text_elements"
+        android:layout_marginTop="@dimen/modal_text_elements"
+        android:layout_marginBottom="@dimen/modal_text_elements"
         android:inputType="textPersonName"
         android:hint="@string/channel_description"
         android:textColor="@android:color/darker_gray"/>

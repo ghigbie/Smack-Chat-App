@@ -6,4 +6,5 @@
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="login_margins">8dp</dimen>
+    <dimen name="modal_text_elements">18dp</dimen>
 </resources>
