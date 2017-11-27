@@ -28,7 +28,7 @@
         android:textColor="@android:color/darker_gray" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/addChannelDescriptionText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/modal_text_elements"
