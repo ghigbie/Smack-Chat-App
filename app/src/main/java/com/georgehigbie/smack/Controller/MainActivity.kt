@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        hideKeyboard()
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -88,11 +87,11 @@ class MainActivity : AppCompatActivity() {
                         val channelDescription = descriptionTextField.text.toString()
 
                         //create channel with the channel name and description
-                        hideKeyboard()
+
                     }
                     .setNegativeButton(R.string.cancel){ dialogInterface, i ->
                         //cancel and close the dialog when clicked
-                        hideKeyboard()
+
                     }
                     .show()
         }
@@ -100,6 +99,7 @@ class MainActivity : AppCompatActivity() {
 
     fun sendMessageButtonClicked(view: View){
         ToastService.toasMakerTest(this)
+        hideKeyboard()
     }
 
     fun hideKeyboard(){
