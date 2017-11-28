@@ -19,11 +19,15 @@ import com.georgehigbie.smack.Services.AuthService
 import com.georgehigbie.smack.Services.ToastService
 import com.georgehigbie.smack.Services.UserDataService
 import com.georgehigbie.smack.Utilities.BROADCAST_USER_DATA_CHANGE
+import com.georgehigbie.smack.Utilities.SOCKET_URL
+import io.socket.client.IO
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    val socket = IO.socket(SOCKET_URL)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,9 +39,23 @@ class MainActivity : AppCompatActivity() {
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //the local broadcast manager should be in onResume
         LocalBroadcastManager.getInstance(this).registerReceiver(userDataChangeReciever,
                 IntentFilter(BROADCAST_USER_DATA_CHANGE))
+        socket.connect()
     }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(userDataChangeReciever)
+        socket.disconnect()
+    }
+
 
     private val userDataChangeReciever = object: BroadcastReceiver(){
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -87,6 +105,7 @@ class MainActivity : AppCompatActivity() {
                         val channelDescription = descriptionTextField.text.toString()
 
                         //create channel with the channel name and description
+                        socket.emit("newChannel", channelName, channelDescription)
 
                     }
                     .setNegativeButton(R.string.cancel){ dialogInterface, i ->
