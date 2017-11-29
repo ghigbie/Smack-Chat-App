@@ -36,6 +36,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        socket.connect()
+        socket.on("channelCreated", onNewChannel)
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -48,8 +50,6 @@ class MainActivity : AppCompatActivity() {
         //the local broadcast manager should be in onResume
         LocalBroadcastManager.getInstance(this).registerReceiver(userDataChangeReciever,
                 IntentFilter(BROADCAST_USER_DATA_CHANGE))
-        socket.connect()
-        socket.on("channelCreated", onNewChannel)
         super.onResume()
     }
 
@@ -122,14 +122,16 @@ class MainActivity : AppCompatActivity() {
 
     private val onNewChannel = Emitter.Listener { args ->
         runOnUiThread {
-            val channellName = args[0] as String
+            val channelName = args[0] as String
             val channelDescription = args[1] as String
             val channelId = args[2] as String
 
-            val newChannel = Channel(channellName, channelDescription, channelId)
+            val newChannel = Channel(channelName, channelDescription, channelId)
             MessageService.channels.add(newChannel)
+            println(newChannel.name)
+            println(newChannel.description)
+            println(newChannel.id)
         }
-
     }
 
     fun sendMessageButtonClicked(view: View){
@@ -137,7 +139,7 @@ class MainActivity : AppCompatActivity() {
         hideKeyboard()
     }
 
-    fun hideKeyboard(){
+   fun hideKeyboard(){
         val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
         if(inputManager.isAcceptingText){
