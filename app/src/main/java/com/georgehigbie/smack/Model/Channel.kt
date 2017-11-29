@@ -3,5 +3,11 @@ package com.georgehigbie.smack.Model
 /**
  * Created by georgehigbie on 11/27/17.
  */
-class Channel {
+class Channel(val name: String, val description: String, id: String){
+
+    override fun toString(): String {
+        return "#$name"
+    }
+
+
 }
