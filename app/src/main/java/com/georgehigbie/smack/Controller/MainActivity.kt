@@ -14,13 +14,16 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import com.georgehigbie.smack.Model.Channel
 import com.georgehigbie.smack.R
 import com.georgehigbie.smack.Services.AuthService
+import com.georgehigbie.smack.Services.MessageService
 import com.georgehigbie.smack.Services.ToastService
 import com.georgehigbie.smack.Services.UserDataService
 import com.georgehigbie.smack.Utilities.BROADCAST_USER_DATA_CHANGE
 import com.georgehigbie.smack.Utilities.SOCKET_URL
 import io.socket.client.IO
+import io.socket.emitter.Emitter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
@@ -42,11 +45,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
-        super.onResume()
         //the local broadcast manager should be in onResume
         LocalBroadcastManager.getInstance(this).registerReceiver(userDataChangeReciever,
                 IntentFilter(BROADCAST_USER_DATA_CHANGE))
         socket.connect()
+        socket.on("channelCreated", onNewChannel)
+        super.onResume()
     }
 
 
@@ -114,6 +118,18 @@ class MainActivity : AppCompatActivity() {
                     }
                     .show()
         }
+    }
+
+    private val onNewChannel = Emitter.Listener { args ->
+        runOnUiThread {
+            val channellName = args[0] as String
+            val channelDescription = args[1] as String
+            val channelId = args[2] as String
+
+            val newChannel = Channel(channellName, channelDescription, channelId)
+            MessageService.channels.add(newChannel)
+        }
+
     }
 
     fun sendMessageButtonClicked(view: View){
