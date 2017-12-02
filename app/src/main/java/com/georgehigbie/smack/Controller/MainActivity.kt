@@ -148,6 +148,7 @@ class MainActivity : AppCompatActivity() {
             println(newChannel.name)
             println(newChannel.description)
             println(newChannel.id)
+            channelAdapter.notifyDataSetChanged()
         }
     }
 
