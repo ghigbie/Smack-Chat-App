@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.Volley
 import com.georgehigbie.smack.Model.Channel
 import com.georgehigbie.smack.Utilities.URL_GET_CHANNELS
 import org.json.JSONException
@@ -28,6 +29,7 @@ object MessageService {
                     val newChannel = Channel(name, channelDes, channelId)
                     this.channels.add(newChannel)
                 }
+                complete(true)
             }catch (e: JSONException ){
                 Log.d("JSON", "EXC: ${e.localizedMessage}")
                 complete(false)
@@ -46,5 +48,7 @@ object MessageService {
                 return headers
             }
         }
+        Volley.newRequestQueue(context).add(channelsRequest)
     }
+
 }
