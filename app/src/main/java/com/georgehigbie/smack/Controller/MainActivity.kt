@@ -78,13 +78,17 @@ class MainActivity : AppCompatActivity() {
                 userImageNavHeader.setBackgroundColor(UserDataService.retrunAvatarColor(UserDataService.avatarColor))
                 loginButtonNavHeader.text = "Logout"
 
-                MessageService.getChannels(context, { complete ->
-                    if(complete){
-                        channelAdapter.notifyDataSetChanged()
-                    }
-                })
+                loadChannelsList(context)
             }
         }
+    }
+
+    fun loadChannelsList(context: Context){
+        MessageService.getChannels(context, { complete ->
+            if(complete){
+                channelAdapter.notifyDataSetChanged()
+            }
+        })
     }
 
     override fun onBackPressed() {
