@@ -1,6 +1,7 @@
 package com.georgehigbie.smack.Utilities
 
 import android.content.Context
+import android.content.SharedPreferences
 
 /**
  * Created by georgehigbie on 12/2/17.
@@ -8,7 +9,7 @@ import android.content.Context
 class SharedPrefs(context: Context) {
 
     val PREFS_FILENAME = "prefs"
-    val prefs = context.getSharedPreferences(PREFS_FILENAME, 0)
+    val prefs: SharedPreferences = context.getSharedPreferences(PREFS_FILENAME, 0)
 
     val IS_LOGGED_IN = "isLoggedIn"
     val AUTH_TOKEN = "authToken"
