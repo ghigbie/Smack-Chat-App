@@ -5,6 +5,7 @@ import android.util.Log
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.georgehigbie.smack.Controller.App
 import com.georgehigbie.smack.Model.Channel
 import com.georgehigbie.smack.Utilities.URL_GET_CHANNELS
 import org.json.JSONException
@@ -44,7 +45,7 @@ object MessageService {
 
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
-                headers.put("Authorization", "Bearer ${AuthService.authToken}")
+                headers.put("Authorization", "Bearer ${App.prefs.authToken}")
                 return headers
             }
         }

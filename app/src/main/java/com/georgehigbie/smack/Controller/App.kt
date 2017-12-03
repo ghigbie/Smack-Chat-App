@@ -9,7 +9,7 @@ import com.georgehigbie.smack.Utilities.SharedPrefs
 class App: Application(){
 
     companion object {
-        lateinit var prefs SharedPrefs
+        lateinit var prefs: SharedPrefs
     }
 
     override fun onCreate() {
