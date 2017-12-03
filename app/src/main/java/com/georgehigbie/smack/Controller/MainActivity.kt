@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import com.georgehigbie.smack.Model.Channel
 import com.georgehigbie.smack.R
+import com.georgehigbie.smack.Services.AuthService
 import com.georgehigbie.smack.Services.MessageService
 import com.georgehigbie.smack.Services.ToastService
 import com.georgehigbie.smack.Services.UserDataService
@@ -45,6 +46,10 @@ class MainActivity : AppCompatActivity() {
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
         setUpAdapters()
+
+        if(App.prefs.isLoggedIn){
+            AuthService.findUserByEmail(this){}
+        }
     }
 
     override fun onResume() {

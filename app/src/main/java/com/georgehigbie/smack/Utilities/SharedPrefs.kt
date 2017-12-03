@@ -2,6 +2,7 @@ package com.georgehigbie.smack.Utilities
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.android.volley.toolbox.Volley
 
 /**
  * Created by georgehigbie on 12/2/17.
@@ -26,4 +27,6 @@ class SharedPrefs(context: Context) {
     var userEmail: String
         get() = prefs.getString(USER_EMAIL, "")
         set(value) = prefs.edit().putString(USER_EMAIL, value).apply()
+
+    val requestQueue = Volley.newRequestQueue(context)
 }
