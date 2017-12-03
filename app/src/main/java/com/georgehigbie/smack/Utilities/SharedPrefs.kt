@@ -23,7 +23,7 @@ class SharedPrefs(context: Context) {
         get() = prefs.getString(AUTH_TOKEN, "")
         set(value) = prefs.edit().putString(AUTH_TOKEN, value).apply()
 
-    var userEmailL: String
+    var userEmail: String
         get() = prefs.getString(USER_EMAIL, "")
         set(value) = prefs.edit().putString(USER_EMAIL, value).apply()
 }

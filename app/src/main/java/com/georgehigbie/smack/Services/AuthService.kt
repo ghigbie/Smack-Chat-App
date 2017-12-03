@@ -57,7 +57,7 @@ object AuthService {
 
             println(response)
             try{
-                App.prefs.userEmailL = response.getString("user")
+                App.prefs.userEmail = response.getString("user")
                 App.prefs.authToken = response.getString("token")
                 App.prefs.isLoggedIn = true
                 complete(true)
