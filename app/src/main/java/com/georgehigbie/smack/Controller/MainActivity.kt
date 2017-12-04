@@ -82,13 +82,13 @@ class MainActivity : AppCompatActivity() {
                 userImageNavHeader.setBackgroundColor(UserDataService.retrunAvatarColor(UserDataService.avatarColor))
                 loginButtonNavHeader.text = "Logout"
 
-                loadChannelsList(context)
+                loadChannelsList()
             }
         }
     }
 
-    fun loadChannelsList(context: Context){
-        MessageService.getChannels(context, { complete ->
+    fun loadChannelsList(){
+        MessageService.getChannels({ complete ->
             if(complete){
                 channelAdapter.notifyDataSetChanged()
             }

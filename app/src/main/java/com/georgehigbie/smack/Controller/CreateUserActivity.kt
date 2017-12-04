@@ -66,13 +66,13 @@ class CreateUserActivity : AppCompatActivity() {
 
         if (userName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
 
-            AuthService.registerUser(this, email, password) { registerSuccess ->
+            AuthService.registerUser(email, password) { registerSuccess ->
                 if (registerSuccess) {
                     println("REGISTER COMPLETE")
-                    AuthService.loginUser(this, email, password) { loginSuccess ->
+                    AuthService.loginUser(email, password) { loginSuccess ->
                         if (loginSuccess) {
                             println("LOGIN COMPLETE")
-                            AuthService.createUser(this, userName, email, userAvatar, avatarColor) { createSuccess ->
+                            AuthService.createUser(userName, email, userAvatar, avatarColor) { createSuccess ->
                                 if (createSuccess) {
                                     //developer notifications
                                     println(UserDataService.avatarName)
