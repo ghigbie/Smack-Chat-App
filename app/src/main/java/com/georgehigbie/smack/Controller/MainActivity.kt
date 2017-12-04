@@ -19,7 +19,6 @@ import com.georgehigbie.smack.Model.Channel
 import com.georgehigbie.smack.R
 import com.georgehigbie.smack.Services.AuthService
 import com.georgehigbie.smack.Services.MessageService
-import com.georgehigbie.smack.Services.ToastService
 import com.georgehigbie.smack.Services.UserDataService
 import com.georgehigbie.smack.Utilities.BROADCAST_USER_DATA_CHANGE
 import com.georgehigbie.smack.Utilities.SOCKET_URL
@@ -175,8 +174,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun sendMessageButtonClicked(view: View){
-        ToastService.toasMakerTest(this)
-        hideKeyboard()
+        if(App.prefs.isLoggedIn && messageTextField.text.isNotEmpty() && selectedChannel != null){
+            val userId = UserDataService.id
+            val channelId = selectedChannel!!.id
+            socket.emit("newMessage", messageTextField.text.toString(), userId, channelId,
+                    UserDataService.name, UserDataService.avatarName, UserDataService.avatarColor)
+            messageTextField.text.clear()
+            hideKeyboard()
+        }
     }
 
    fun hideKeyboard(){
