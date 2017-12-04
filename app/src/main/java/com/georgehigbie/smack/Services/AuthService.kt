@@ -17,10 +17,6 @@ import org.json.JSONObject
  */
 object AuthService {
 
-//    var isLoggedIn: Boolean = false
-//    var userEmail: String = ""
-//    var authToken: String = ""
-
     fun registerUser(context: Context, email: String, password: String, complete:(Boolean) -> Unit){
 
         val jsonBody = JSONObject()
