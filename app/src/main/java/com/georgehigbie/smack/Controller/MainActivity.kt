@@ -16,6 +16,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import com.georgehigbie.smack.Model.Channel
+import com.georgehigbie.smack.Model.Message
 import com.georgehigbie.smack.R
 import com.georgehigbie.smack.Services.AuthService
 import com.georgehigbie.smack.Services.MessageService
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         socket.connect()
         socket.on("channelCreated", onNewChannel)
+        socket.on("messageCreated", )
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -170,6 +172,22 @@ class MainActivity : AppCompatActivity() {
             println(newChannel.description)
             println(newChannel.id)
             channelAdapter.notifyDataSetChanged()
+        }
+    }
+
+    private val onNewMessage = Emitter.Listener { args ->
+        runOnUiThread {
+            val msgBody = args[0] as String
+            val channelId = args[2] as String
+            val userName = args[3] as String
+            val userAvatar = args[4] as String
+            val userAvatarColor = args[5] as String
+            val id = args[6] as String
+            val timeStamp = args[7] as String
+
+            val newMessage = Message(msgBody, userName, channelId, userAvatar, userAvatarColor, id, timeStamp)
+            MessageService.messages.add(newMessage)
+            println(newMessage.message)
         }
     }
 
